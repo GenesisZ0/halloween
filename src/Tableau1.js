@@ -11,16 +11,21 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg2-terrain-2', 'assets/level/background-2/bg2-terrain-2.png');
         this.load.image('bg2-tree-2', 'assets/level/background-2/bg2-tree-2.png');
         this.load.image('bg2-terrain-4', 'assets/level/background-2/bg2-terrain-4.png');
+        this.load.image('bg2-tree-3', 'assets/level/background-2/bg2-tree-3.png');
 
         //bg 1 (gris légèrement flou)
         this.load.image('bg1-terrain-3', 'assets/level/background-1/bg-terrain-3.png');
-
+        this.load.image('bg1-tree-3', 'assets/level/background-1/bg-tree-3.png');
+        this.load.image('bg1-tree-1', 'assets/level/background-1/bg-tree-1.png');
         //ground (premier plan noir)
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
+        this.load.image('gLeft', 'assets/level/ground/g-left.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
         this.load.image('gTree1', 'assets/level/ground/g-tree-1.png');
         this.load.image('gTree2', 'assets/level/ground/g-tree-2.png');
-
+        this.load.image('gStone4', 'assets/level/ground/g-stone-4.png');
+        this.load.image('gMush1', 'assets/level/ground/g-mushroom1.png');
+        this.load.image('gBridge', 'assets/level/ground/g-wooden-bridge.png');
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         for(let i=1;i<=5;i++){
@@ -64,7 +69,7 @@ class Tableau1 extends Phaser.Scene{
          * Terrain dans bg2
          * @type {Phaser.GameObjects.Image}
          */
-        let bg2Terrain2=this.add.image(-50,150, 'bg2-terrain-2').setOrigin(0,0);
+        let bg2Terrain2=this.add.image(-100,150, 'bg2-terrain-2').setOrigin(0,0);
         this.bg2Container.add(bg2Terrain2);
         /**
          * Terrain dans bg2
@@ -76,10 +81,16 @@ class Tableau1 extends Phaser.Scene{
          * Arbre dans bg2
          * @type {Phaser.GameObjects.Image}
          */
-        let bg2Tree2=this.add.image(200,-50, 'bg2-tree-2').setOrigin(0,0);
+        let bg2Tree2=this.add.image(420,-50, 'bg2-tree-2').setOrigin(0,0);
         this.bg2Container.add(bg2Tree2);
         bg2Tree2.angle=0; //pencher l'arbre de -5 degrès
-
+        /**
+         * Arbre dans bg2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg2Tree3=this.add.image(700,-50, 'bg2-tree-3').setOrigin(0,0);
+        this.bg2Container.add(bg2Tree3);
+        bg2Tree3.angle=-9; //pencher l'arbre de -5 degrès
 
         //--------------background 1 (gris) --------------------
 
@@ -92,9 +103,22 @@ class Tableau1 extends Phaser.Scene{
          * Terrain
          * @type {Phaser.GameObjects.Image}
          */
-        let bg1Terrain3=this.add.image(-300,200, 'bg1-terrain-3').setOrigin(0,0);
-        this.bg1Container.add(bg1Terrain3);
-
+        let bg1Tree3=this.add.image(150,-100, 'bg1-tree-3').setOrigin(0,0);
+        this.bg1Container.add(bg1Tree3);
+        bg1Tree3.scale = 0.7
+        /**
+         * Terrain
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Tree1=this.add.image(-10,0, 'bg1-tree-1').setOrigin(0,0);
+        this.bg1Container.add(bg1Tree1);
+        bg1Tree1.scale = 0.5
+        /**
+         * Terrain
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1terrain3=this.add.image(-450,195, 'bg1-terrain-3').setOrigin(0,0);
+        this.bg1Container.add(bg1terrain3);
         //-------------ground (premier plan noir)---------------------------
 
         /**
@@ -103,32 +127,55 @@ class Tableau1 extends Phaser.Scene{
          */
         this.groundContainer=this.add.container(0,0);
         /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let mush1=this.add.image(150,360, 'gMush1').setOrigin(0,1);
+        this.groundContainer.add(mush1);
+        mush1.flipX = true
+        /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
-        let tree1=this.add.image(400,350, 'gTree1').setOrigin(0,1);
+        let tree1=this.add.image(265,410, 'gTree1').setOrigin(0,1);
        // tree1.setTintFill(0xFF0000); // pratique pour dbugger
         this.groundContainer.add(tree1);
         /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
-        let tree2=this.add.image(100,450, 'gTree2').setOrigin(0,1);
+        let tree1c=this.add.image(755,-75, 'gTree1').setOrigin(0,0);
+        this.groundContainer.add(tree1c);
+        tree1c.scale = 0.9
+        tree1c.flipX = true
+        tree1c.angle=-8 ;
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let tree2=this.add.image(0,450, 'gTree2').setOrigin(0,1);
         // tree2.setTintFill(0xFF0000); // pratique pour dbugger
         this.groundContainer.add(tree2);
-
+        tree2.flipX = true
+        /**
+         * caloou
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gStone=this.add.image(775,380, 'gStone4').setOrigin(0,0);
+        this.groundContainer.add(gStone);
+        gStone.scale = 0.9
         /**
          * Terrain 1
          * @type {Phaser.GameObjects.Image}
          */
         //ici on va calculer les positions
-        let gMid1=this.add.image(0,350, 'gMid').setOrigin(0,0);
+        let gMid1=this.add.image(-170,350, 'gMid').setOrigin(0,0);
         this.groundContainer.add(gMid1);
         /**
          * Terrain 2
          * @type {Phaser.GameObjects.Image}
          */
-        let gMid2=this.add.image(gMid1.x+gMid1.width+1,350, 'gMid').setOrigin(0,0); //on rajoute 1 px pour l'exemple
+        let gMid2=this.add.image(gMid1.x+gMid1.width,350, 'gMid').setOrigin(0,0); //on rajoute 1 px pour l'exemple
         this.groundContainer.add(gMid2);
         /**
          * Terrain 3
@@ -136,6 +183,20 @@ class Tableau1 extends Phaser.Scene{
          */
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
+        /**
+         * Terrain 3
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gbridge=this.add.image(400,310, 'gBridge').setOrigin(0,0);
+        this.groundContainer.add(gbridge);
+        gbridge.scale = 0.8
+        /**
+         * De l'herbe en textures qui se répète
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gleft=this.add.image(750,400, 'gLeft').setOrigin(0,0);
+        this.groundContainer.add(gleft);
+        gleft.scale = 1.02
         /**
          * De l'herbe en textures qui se répète
          * @type {Phaser.GameObjects.TileSprite}
