@@ -188,6 +188,40 @@ class Tableau1 extends Phaser.Scene{
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
+        let Vine7 =this.add.image(574,25, 'gVine3').setOrigin(0,1);
+        this.groundContainer.add(Vine7);
+        Vine7.scale = 0.7
+        Vine7.angle = -5
+        Vine7.flipX = true
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine8 =this.add.image(575,50, 'gVine2').setOrigin(0,1);
+        this.groundContainer.add(Vine8);
+        Vine8.scale = 0.6
+        Vine8.angle = 2
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine9 =this.add.image(576,70, 'gVine2').setOrigin(0,1);
+        this.groundContainer.add(Vine9);
+        Vine9.scale = 0.6
+        Vine9.angle = -2
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine10 =this.add.image(572,100, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(Vine10);
+        Vine10.scale = 0.7
+        Vine10.angle = -4
+
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
         let Vine5 =this.add.image(533,160, 'gVine2').setOrigin(0,1);
         this.groundContainer.add(Vine5);
         Vine5.scale = 0.8
