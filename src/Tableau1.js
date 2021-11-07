@@ -22,6 +22,9 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gLeft', 'assets/level/ground/g-left.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
+        this.load.image('gVine1', 'assets/level/ground/g-vine-a.png');
+        this.load.image('gVine2', 'assets/level/ground/g-vine-b.png');
+        this.load.image('gVine3', 'assets/level/ground/g-vine-c.png');
         this.load.image('gTree1', 'assets/level/ground/g-tree-1.png');
         this.load.image('gTree2', 'assets/level/ground/g-tree-2.png');
         this.load.image('gStone4', 'assets/level/ground/g-stone-4.png');
@@ -153,9 +156,56 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(mush1);
         mush1.flipX = true
         /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let Vine3 =this.add.image(525,38, 'gVine3').setOrigin(0,1);
+        this.groundContainer.add(Vine3);
+        Vine3.scale = 0.8
+        /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
+        let Vine1 =this.add.image(525,65, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(Vine1);
+        Vine1.scale = 0.8
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine2 =this.add.image(532,100, 'gVine2').setOrigin(0,1);
+        this.groundContainer.add(Vine2);
+        Vine2.scale = 0.8
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine4 =this.add.image(530,130, 'gVine3').setOrigin(0,1);
+        this.groundContainer.add(Vine4);
+        Vine4.scale = 0.8
+        Vine4.angle = -5
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine5 =this.add.image(533,160, 'gVine2').setOrigin(0,1);
+        this.groundContainer.add(Vine5);
+        Vine5.scale = 0.8
+        Vine5.angle = 5
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine6 =this.add.image(530,190, 'gVine3').setOrigin(0,1);
+        this.groundContainer.add(Vine6);
+        Vine6.scale = 0.8
+        Vine6.angle = -2
+
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+
         let tree1=this.add.image(265,410, 'gTree1').setOrigin(0,1);
        // tree1.setTintFill(0xFF0000); // pratique pour dbugger
         this.groundContainer.add(tree1);
