@@ -18,6 +18,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg1-tree-3', 'assets/level/background-1/bg-tree-3.png');
         this.load.image('bg1-tree-1', 'assets/level/background-1/bg-tree-1.png');
         //ground (premier plan noir)
+        this.load.image('gGrass1', 'assets/level/ground/g-grass-1.png');
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gLeft', 'assets/level/ground/g-left.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
@@ -26,6 +27,8 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gStone4', 'assets/level/ground/g-stone-4.png');
         this.load.image('gMush1', 'assets/level/ground/g-mushroom1.png');
         this.load.image('gBridge', 'assets/level/ground/g-wooden-bridge.png');
+        this.load.image('gWater', 'assets/level/ground/g-water.png');
+        this.load.image('gbox2', 'assets/level/ground/g-box-2.png');
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         for(let i=1;i<=5;i++){
@@ -130,6 +133,22 @@ class Tableau1 extends Phaser.Scene{
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
          */
+        let box2=this.add.image(490,360, 'gbox2').setOrigin(0,1);
+        this.groundContainer.add(box2);
+        box2.scale = 0.6
+        box2.angle = 5
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let SeaGrass=this.add.image(450,550, 'gGrass1').setOrigin(0,1);
+        this.groundContainer.add(SeaGrass);
+        SeaGrass.scale = 2
+        SeaGrass.flipX = true
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
         let mush1=this.add.image(150,360, 'gMush1').setOrigin(0,1);
         this.groundContainer.add(mush1);
         mush1.flipX = true
@@ -140,6 +159,12 @@ class Tableau1 extends Phaser.Scene{
         let tree1=this.add.image(265,410, 'gTree1').setOrigin(0,1);
        // tree1.setTintFill(0xFF0000); // pratique pour dbugger
         this.groundContainer.add(tree1);
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let water=this.add.image(420,625, 'gWater').setOrigin(0,1);
+        this.groundContainer.add(water);
         /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
