@@ -19,9 +19,14 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg1-tree-1', 'assets/level/background-1/bg-tree-1.png');
         this.load.image('bg1-terrain-1', 'assets/level/background-1/bg-terrain-1.png');
         this.load.image('bg1-tree-2', 'assets/level/background-1/bg-tree-2.png');
+        this.load.image('bg1-terrain-4', 'assets/level/background-1/bg-terrain-4.png');
+        this.load.image('bg1-bridge', 'assets/level/background-1/bg-wooden-bridge.png');
+
         //ground (premier plan noir)
         this.load.image('gft1', 'assets/level/ground/g-fellen-tree-1.png');
         this.load.image('gGrass1', 'assets/level/ground/g-grass-1.png');
+        this.load.image('gGrass2', 'assets/level/ground/g-grass-2.png');
+        this.load.image('gGrass3', 'assets/level/ground/g-grass-3.png');
         this.load.image('gSpike', 'assets/level/ground/g-spike-1.png');
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gLeft', 'assets/level/ground/g-left.png');
@@ -45,15 +50,24 @@ class Tableau1 extends Phaser.Scene{
 
         //filtre film TODO élève : faire une boucle à la place des 3 lignes qui suivent
         for(let i=1;i<=3;i++) {
-            this.load.image('filterFilm' + i, 'assets/level/filters/film/frame-' + i + '.png');
+            this.load.image('filterBloody' + i, 'assets/level/filters/bloody/frame' + i + '.png');
 
         }
+
+
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
         for(let i=1;i<=3;i++) {
             this.load.image('bg-animation-' + i, 'assets/level/background-2/bg-animation/bg-animation-' + i + '.png');
         }
+        //filtre neige
+        for(let i=1;i<=5;i++) {
+            this.load.image('filterNeige' + i, 'assets/level/weather/snow/frame' + i + '.png');
+
+        }
+
     }
+
 
     /**
      * Crée la scène
@@ -117,6 +131,18 @@ class Tableau1 extends Phaser.Scene{
         let bg1terrain1=this.add.image(620,270, 'bg1-terrain-1').setOrigin(0,0);
         this.bg1Container.add(bg1terrain1);
         bg1terrain1.scale = 0.6
+        /**
+         * Terrain
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1terrain4=this.add.image(1160,200, 'bg1-terrain-4').setOrigin(0,0);
+        this.bg1Container.add(bg1terrain4)
+        /**
+         * Terrain
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1bridge =this.add.image(930,250, 'bg1-bridge').setOrigin(0,0);
+        this.bg1Container.add(bg1bridge)
         /**
          * Terrain
          * @type {Phaser.GameObjects.Image}
@@ -224,8 +250,84 @@ class Tableau1 extends Phaser.Scene{
          */
         let SeaGrass=this.add.image(450,550, 'gGrass1').setOrigin(0,1);
         this.groundContainer.add(SeaGrass);
-        SeaGrass.scale = 2
-        SeaGrass.flipX = true
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gGrass=this.add.image(1070,370, 'gGrass2').setOrigin(0,1);
+        this.groundContainer.add(gGrass);
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+
+        let gGrass2=this.add.image(1070,370, 'gGrass2').setOrigin(0,1);
+        this.groundContainer.add(gGrass2);
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine20 =this.add.image(1970,25, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(Vine20);
+        Vine20.scale = 0.6
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let Vine21 =this.add.image(1970,44, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(Vine21);
+        Vine21.scale = 0.6
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let vine22 =this.add.image(1972,70, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(vine22);
+        vine22.scale = 0.6
+        vine22.angle = -5
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let vine23 =this.add.image(1969,90, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(vine23);
+        vine23.scale = 0.6
+        vine23.angle = 5
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let vine24 =this.add.image(1969,115, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(vine24);
+        vine24.scale = 0.6
+        vine24.angle = 0
+        /**
+         * Arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let vine25 =this.add.image(1969,130, 'gVine1').setOrigin(0,1);
+        this.groundContainer.add(vine25);
+        vine25.scale = 0.6
+        vine25.angle = 2
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gGrass3=this.add.image(1390,370, 'gGrass2').setOrigin(0,1);
+        this.groundContainer.add(gGrass3);
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gGrass5=this.add.image(1945,395, 'gGrass2').setOrigin(0,1);
+        this.groundContainer.add(gGrass5);
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gGrass4=this.add.image(1502,380, 'gGrass3').setOrigin(0,1);
+        this.groundContainer.add(gGrass4);
+
         /**
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
@@ -426,19 +528,39 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.filterFilm = this.add.sprite(0, 0, 'filterFilm1').setOrigin(0,0);
+        this.filterBloody = this.add.sprite(0, 0, 'filterBloody1').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
-            key: 'film',
+            key: 'bloody',
             frames: [
-                {key:'filterFilm1'},
-                {key:'filterFilm2'},
-                {key:'filterFilm3'},
+                {key:'filterBloody1'},
+                {key:'filterBloody2'},
+                {key:'filterBloody3'},
             ],
             frameRate: 16,
             repeat: -1
         });
-        this.filterFilm.play('film');
+        this.filterBloody.play('bloody');
+
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterNeige = this.add.sprite(0, 0, 'filterNeige').setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'neige',
+            frames: [
+                {key:'filterNeige1'},
+                {key:'filterNeige2'},
+                {key:'filterNeige3'},
+                {key:'filterNeige4'},
+                {key:'filterNeige5'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterNeige.play('neige');
 
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
 
@@ -454,7 +576,8 @@ class Tableau1 extends Phaser.Scene{
         this.cameras.main.setBounds(0, 0, 2000, 540);
         //définit à quelles vitesse se déplacent nos différents plans
         bgAnimationA.scrollFactorX=0;
-        this.filterFilm.scrollFactorX=0;
+        this.filterBloody.scrollFactorX=0;
+        this.filterNeige.scrollFactorX=0;
         this.bg2Container.scrollFactorX=0.2;
         this.bg1Container.scrollFactorX=0.4;
         this.groundContainer.scrollFactorX=1;
@@ -497,7 +620,7 @@ class Tableau1 extends Phaser.Scene{
         this.cameras.main.scrollX+=this.speed; // on aurait pu écrire : this.cameras.main.scrollX= this.cameras.main.scrollX + this.speed;
 
         //petit effet de vibrance sur le filtre film au tout premier plan
-        this.filterFilm.setAlpha(Phaser.Math.Between(95,100)/100)
+        this.filterBloody.setAlpha(Phaser.Math.Between(95,100)/100)
     }
 
 
