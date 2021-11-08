@@ -151,8 +151,9 @@ class Tableau1 extends Phaser.Scene{
          * Terrain
          * @type {Phaser.GameObjects.Image}
          */
-        let bg1bridge =this.add.image(930,250, 'bg1-bridge').setOrigin(0,0);
+        let bg1bridge =this.add.image(960,260, 'bg1-bridge').setOrigin(0,0);
         this.bg1Container.add(bg1bridge)
+        bg1bridge.angle = -5
         /**
          * Terrain
          * @type {Phaser.GameObjects.Image}
@@ -630,10 +631,10 @@ class Tableau1 extends Phaser.Scene{
             switch (kevent.keyCode)
             {
                 case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                    me.speed=20;
+                    me.speed=5;
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                    me.speed=-20;
+                    me.speed=-5;
                     break;
             }
         });
