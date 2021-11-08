@@ -21,6 +21,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg1-tree-2', 'assets/level/background-1/bg-tree-2.png');
         //ground (premier plan noir)
         this.load.image('gGrass1', 'assets/level/ground/g-grass-1.png');
+        this.load.image('gSpike', 'assets/level/ground/g-spike-1.png');
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gLeft', 'assets/level/ground/g-left.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
@@ -156,6 +157,17 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(box2);
         box2.scale = 0.6
         box2.angle = 5
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+
+        let spike=this.add.image(530,500,'gSpike')
+        this.groundContainer.add(spike)
+        spike.scale=1
+        let spike2=this.add.image(725,500,'gSpike')
+        this.groundContainer.add(spike2)
+        spike2.scale=1
         /**
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
