@@ -20,6 +20,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('bg1-terrain-1', 'assets/level/background-1/bg-terrain-1.png');
         this.load.image('bg1-tree-2', 'assets/level/background-1/bg-tree-2.png');
         //ground (premier plan noir)
+        this.load.image('gft1', 'assets/level/ground/g-fellen-tree-1.png');
         this.load.image('gGrass1', 'assets/level/ground/g-grass-1.png');
         this.load.image('gSpike', 'assets/level/ground/g-spike-1.png');
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
@@ -28,6 +29,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gVine1', 'assets/level/ground/g-vine-a.png');
         this.load.image('gVine2', 'assets/level/ground/g-vine-b.png');
         this.load.image('gVine3', 'assets/level/ground/g-vine-c.png');
+        this.load.image('gStone5', 'assets/level/ground/g-stone-5.png');
         this.load.image('gTree1', 'assets/level/ground/g-tree-1.png');
         this.load.image('gTree2', 'assets/level/ground/g-tree-2.png');
         this.load.image('gStone4', 'assets/level/ground/g-stone-4.png');
@@ -161,7 +163,55 @@ class Tableau1 extends Phaser.Scene{
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
          */
+        let gStone5=this.add.image(1101,360, 'gStone5').setOrigin(0,1);
+        this.groundContainer.add(gStone5);
+        gStone5.scale = 1.2
 
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gMid4=this.add.image(946.6,400, 'gMid').setOrigin(0,0);
+        this.groundContainer.add(gMid4);
+        gMid4.angle = -5
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gft1=this.add.image(1550,270, 'gft1').setOrigin(0,0);
+        this.groundContainer.add(gft1);
+        gft1.scale = 0.9
+        gft1.angle = 5.5
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gtree=this.add.image(1100,-35, 'gTree2').setOrigin(0,0);
+        this.groundContainer.add(gtree);
+        gtree.scale = 0.8
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gmush2=this.add.image(1442,316, 'gMush1').setOrigin(0,0);
+        this.groundContainer.add(gmush2);
+        gmush2.scale = 0.6
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gMid5=this.add.image(1150,350, 'gMid').setOrigin(0,0);
+        this.groundContainer.add(gMid5)
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gMid6=this.add.image(1345,350, 'gMid').setOrigin(0,0);
+        this.groundContainer.add(gMid6)
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
         let spike=this.add.image(530,500,'gSpike')
         this.groundContainer.add(spike)
         spike.scale=1
@@ -315,11 +365,37 @@ class Tableau1 extends Phaser.Scene{
         let gMid2=this.add.image(gMid1.x+gMid1.width,350, 'gMid').setOrigin(0,0); //on rajoute 1 px pour l'exemple
         this.groundContainer.add(gMid2);
         /**
+         * Terrain 2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gLeft=this.add.image(1900,380, 'gLeft').setOrigin(0,0); //on rajoute 1 px pour l'exemple
+        this.groundContainer.add(gLeft);
+
+        /**
          * Terrain 3
          * @type {Phaser.GameObjects.Image}
          */
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
+        /**
+         * Terrain 3
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gright=this.add.image(1400,350, 'gRight').setOrigin(0,0);
+        this.groundContainer.add(gright);
+        /**
+         * Terrain 3
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gstone=this.add.image(1100,355, 'gStone4').setOrigin(0,0);
+        this.groundContainer.add(gstone);
+        /**
+         * Terrain 3
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gstone1=this.add.image(950,355, 'gStone4').setOrigin(0,0);
+        this.groundContainer.add(gstone1);
+        gstone1.scale = 2
         /**
          * Terrain 3
          * @type {Phaser.GameObjects.Image}
@@ -394,10 +470,10 @@ class Tableau1 extends Phaser.Scene{
             switch (kevent.keyCode)
             {
                 case Phaser.Input.Keyboard.KeyCodes.RIGHT:
-                    me.speed=1;
+                    me.speed=20;
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
-                    me.speed=-1;
+                    me.speed=-20;
                     break;
             }
         });
