@@ -46,7 +46,7 @@ class Tableau1 extends Phaser.Scene{
         // Zombie
 
         this.load.image('gZ15', 'assets/level/zombie/z15.png');
-
+        this.load.image('gZ1', 'assets/level/zombie/z1.png');
 
 
 
@@ -201,6 +201,13 @@ class Tableau1 extends Phaser.Scene{
          */
         let gz15=this.add.image(340,370, 'gZ15').setOrigin(0,1);
         this.groundContainer.add(gz15);
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gz1=this.add.image(1150,370, 'gZ1').setOrigin(0,1);
+        this.groundContainer.add(gz1);
+        gz1.scale = 0.8
         /**
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
