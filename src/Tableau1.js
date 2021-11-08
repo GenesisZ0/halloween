@@ -42,6 +42,16 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gBridge', 'assets/level/ground/g-wooden-bridge.png');
         this.load.image('gWater', 'assets/level/ground/g-water.png');
         this.load.image('gbox2', 'assets/level/ground/g-box-2.png');
+
+        // Zombie
+
+        this.load.image('gZ15', 'assets/level/zombie/z15.png');
+
+
+
+
+
+
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         for(let i=1;i<=5;i++){
@@ -185,6 +195,26 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(box2);
         box2.scale = 0.6
         box2.angle = 5
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gz15=this.add.image(340,370, 'gZ15').setOrigin(0,1);
+        this.groundContainer.add(gz15);
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gspike=this.add.image(1570,550, 'gSpike').setOrigin(0,1);
+        this.groundContainer.add(gspike);
+        gspike.scale =1
+        /**
+         * contient tous les éléments du premier plan (noir)
+         * @type {Phaser.GameObjects.Container}
+         */
+        let gspike2=this.add.image(1695,550, 'gSpike').setOrigin(0,1);
+        this.groundContainer.add(gspike2);
+        gspike2.scale =1
         /**
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
