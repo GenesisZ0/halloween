@@ -75,6 +75,11 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('filterNeige' + i, 'assets/level/weather/snow/frame' + i + '.png');
 
         }
+        //filtre pLUIE
+        for(let i=1;i<=3;i++) {
+            this.load.image('filterPluie' + i, 'assets/level/weather/rain/frame' + i + '.png');
+
+        }
 
     }
 
@@ -600,6 +605,25 @@ class Tableau1 extends Phaser.Scene{
         });
         this.filterNeige.play('neige');
 
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterPluie = this.add.sprite(0, 0, 'filterPluie').setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'pluie',
+            frames: [
+                {key:'filterPluie1'},
+                {key:'filterPluie2'},
+                {key:'filterPluie3'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterPluie.play('pluie') ;
+        this.filterPluie.setVisible(false)
+
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
 
         //gestion du parallaxe
@@ -616,6 +640,7 @@ class Tableau1 extends Phaser.Scene{
         bgAnimationA.scrollFactorX=0;
         this.filterBloody.scrollFactorX=0;
         this.filterNeige.scrollFactorX=0;
+        this.filterPluie.scrollFactorX=0;
         this.bg2Container.scrollFactorX=0.2;
         this.bg1Container.scrollFactorX=0.4;
         this.groundContainer.scrollFactorX=1;
@@ -636,6 +661,10 @@ class Tableau1 extends Phaser.Scene{
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
                     me.speed=-5;
                     break;
+
+                case Phaser.Input.Keyboard.KeyCodes.P:
+                    me.filterPluie.setVisible(true)
+                    break;
             }
         });
         this.input.keyboard.on('keyup', function(kevent)
@@ -648,6 +677,7 @@ class Tableau1 extends Phaser.Scene{
                     break;
             }
         });
+
     }
 
     /**
