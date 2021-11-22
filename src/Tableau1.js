@@ -64,6 +64,11 @@ class Tableau1 extends Phaser.Scene{
 
         }
 
+        // perso
+
+        for(let i=1;i<=;i++) {
+            this.load.image('bg-animation-' + i, 'assets/level/background-2/bg-animation/bg-animation-' + i + '.png');
+        }
 
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
@@ -663,7 +668,18 @@ class Tableau1 extends Phaser.Scene{
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.P:
+                    me.filterNeige.setVisible(false)
                     me.filterPluie.setVisible(true)
+                    break;
+
+                case Phaser.Input.Keyboard.KeyCodes.N:
+                    me.filterNeige.setVisible(true)
+                    me.filterPluie.setVisible(false)
+                    break;
+
+                case Phaser.Input.Keyboard.KeyCodes.S:
+                    me.filterNeige.setVisible(false)
+                    me.filterPluie.setVisible(false)
                     break;
             }
         });
