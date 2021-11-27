@@ -43,6 +43,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gWater', 'assets/level/ground/g-water.png');
         this.load.image('gbox2', 'assets/level/ground/g-box-2.png');
 
+
         // Zombie
 
         this.load.image('gZ15', 'assets/level/zombie/z15.png');
@@ -67,13 +68,21 @@ class Tableau1 extends Phaser.Scene{
         // perso
 
         for(let i=1;i<=10;i++) {
-            this.load.image('idle' + i, 'assets/Characters/boy/boy_style_4/PNG/idle/Layer-' + i + '.png');
+            this.load.image('push' + i, 'assets/Characters/boy/boy_style_4/PNG/push/Layer-' + i + '.png');
         }
 
         for(let i=1;i<=10;i++) {
-            this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_4/PNG/idle2/Layer-' + i + '.png');
+            this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
         }
 
+        for(let i=1;i<=10;i++) {
+            this.load.image('walk' + i, 'assets/Characters/boy/boy_style_2/PNG/walk/Layer-' + i + '.png');
+        }
+        // enemie
+
+        for(let i=1;i<=6;i++) {
+            this.load.image('monster' + i, 'assets/Characters/enemy2/PNG/idle/Layer-' + i + '.png');
+        }
 
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
@@ -96,8 +105,7 @@ class Tableau1 extends Phaser.Scene{
 
     /**
      * Crée la scène
-     * TODO élèves : reproduire à l'identique assets/level/00-preview-example/sample1.jpg
-     * TODO élèves : plus tard, continuez le décor vers la droite en vous servant des assets mis à votre disposition
+
      */
     create() {
 
@@ -599,17 +607,48 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.filterBoy = this.add.sprite(550, 170, 'idle').setOrigin(0, 0);
+        this.filterBoy = this.add.sprite(1430, 205  , 'push').setOrigin(0, 0);
         //animation de 3 images
         this.anims.create({
-            key: 'idle',
-            frames: this.getFrames('idle',10),
+            key: 'push',
+            frames: this.getFrames('push',10),
+            frameRate: 7,
+            repeat: -1
+        });
+        this.filterBoy.play('push');
+        this.filterBoy.scale = 0.4
+        this.filterBoy.setVisible(true)
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterBoyWalk = this.add.sprite(510, 215  , 'walk').setOrigin(0, 0);
+        this.filterBoyWalk
+        //animation de 3 images
+        this.anims.create({
+            key: 'walk',
+            frames: this.getFrames('walk',10),
+            frameRate: 14,
+            repeat: -1
+        });
+        this.filterBoyWalk.play('walk');
+        this.filterBoyWalk.scale = 0.4
+        this.filterBoyWalk.setVisible(true)
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterMonster = this.add.sprite(1430, 205  , 'monster').setOrigin(0, 0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'monster',
+            frames: this.getFrames('monster',6),
             frameRate: 16,
             repeat: -1
         });
-        this.filterBoy.play('idle');
-        this.filterBoy.scale = 0.4
-        this.filterBoy.setVisible(true)
+        this.filterMonster.play('monster');
+        this.filterMonster.scale = 0.4
+        this.filterMonster.setVisible(true)
 
 
 
@@ -684,11 +723,12 @@ class Tableau1 extends Phaser.Scene{
          * @type {number}
          */
         this.speed = 0;
+        this.speedmonster = 0 ;
         //initialise ce qui se passe avec le clavier
         this.initKeyboard();
         // Définit l'espace de déplacement de la caméra
         this.cameras.main.setBounds(0, 0, 2000, 540);
-        this.filterboy2.setbo(0, 0, 2000, 540);
+
         //définit à quelles vitesse se déplacent nos différents plans
         bgAnimationA.scrollFactorX = 0;
         this.filterBloody.scrollFactorX = 0;
@@ -707,6 +747,8 @@ class Tableau1 extends Phaser.Scene{
         }
         return frames;
     }
+
+
     /**
      * Définit ce qui se passe quand on appuie ou relache une touche du clavier
      * ALGO : ceci est une fonction ou méthode
@@ -725,19 +767,43 @@ class Tableau1 extends Phaser.Scene{
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.P:
-                    me.filterNeige.setVisible(false)
-                    me.filterPluie.setVisible(true)
-                    break;
+                    if (me.filterPluie.visible == true) {
+                        me.filterPluie.setVisible(false)
 
+                    }
+                    else  {
+                        me.filterNeige.setVisible(false)
+                        me.filterPluie.visible = true;
+
+                        }
+                    break;
                 case Phaser.Input.Keyboard.KeyCodes.N:
-                    me.filterNeige.setVisible(true)
-                    me.filterPluie.setVisible(false)
+                    if (me.filterNeige.visible == true) {
+                        me.filterNeige.setVisible(false)
+                    }
+                    else  {
+                        me.filterPluie.setVisible(false)
+                        me.filterNeige.visible = true;
+                    }
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.S:
                     me.filterNeige.setVisible(false)
                     me.filterPluie.setVisible(false)
                     break;
+
+                case Phaser.Input.Keyboard.KeyCodes.D:
+                    me.filterBoyWalk.flipX = false
+                    me.speedmonster = 5
+                    me.filterBoyWalk.x += 5;
+                    break;
+
+                case Phaser.Input.Keyboard.KeyCodes.Q:
+                    me.filterBoyWalk.flipX = 1
+                    me.speedmonster = 5
+                    me.filterBoyWalk.x += -5;
+                    break;
+
 
             }
         });
@@ -760,6 +826,7 @@ class Tableau1 extends Phaser.Scene{
     update(){
         //déplacement de la caméra
         this.cameras.main.scrollX+=this.speed; // on aurait pu écrire : this.cameras.main.scrollX= this.cameras.main.scrollX + this.speed;
+
 
         //petit effet de vibrance sur le filtre film au tout premier plan
         this.filterBloody.setAlpha(Phaser.Math.Between(95,100)/100)
