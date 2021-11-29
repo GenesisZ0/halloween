@@ -74,9 +74,16 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=10;i++) {
             this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
         }
+        for(let i=1;i<=10;i++) {
+            this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
+        }
 
         for(let i=1;i<=10;i++) {
             this.load.image('walk' + i, 'assets/Characters/boy/boy_style_2/PNG/walk/Layer-' + i + '.png');
+        }
+
+        for(let i=1;i<=10;i++) {
+            this.load.image('walki' + i, 'assets/Characters/boy/boy_style_2/PNG/idle/Layer-' + i + '.png');
         }
         // enemie
 
@@ -634,6 +641,8 @@ class Tableau1 extends Phaser.Scene{
         this.filterBoyWalk.play('walk');
         this.filterBoyWalk.scale = 0.4
         this.filterBoyWalk.setVisible(true)
+
+
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
@@ -650,7 +659,21 @@ class Tableau1 extends Phaser.Scene{
         this.filterMonster.scale = 0.4
         this.filterMonster.setVisible(true)
 
-
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterwalki = this.add.sprite(510, 215  , 'walki').setOrigin(0, 0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'walki',
+            frames: this.getFrames('walki',6),
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterwalki.play('walki');
+        this.filterwalki.scale = 0.4
+        this.filterwalki.setVisible(true)
 
         /**
          * filtre type film au premier plan
@@ -737,6 +760,7 @@ class Tableau1 extends Phaser.Scene{
         this.bg2Container.scrollFactorX = 0.2;
         this.bg1Container.scrollFactorX = 0.4;
         this.groundContainer.scrollFactorX = 1;
+        this.filterBoyWalk.setVisible(false)
 
     }
 
@@ -793,14 +817,22 @@ class Tableau1 extends Phaser.Scene{
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.D:
+                    me.filterwalki.setVisible(false)
+                    me.filterBoyWalk.setVisible(true)
                     me.filterBoyWalk.flipX = false
+                    me.filterwalki.flipX = false
                     me.speedmonster = 5
                     me.filterBoyWalk.x += 5;
+                    me.filterwalki.x += 5
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.Q:
+                    me.filterBoyWalk.setVisible(true)
+                    me.filterwalki.setVisible(false)
                     me.filterBoyWalk.flipX = 1
+                    me.filterwalki.flipX = 1
                     me.speedmonster = 5
+                    me.filterwalki.x += -5;
                     me.filterBoyWalk.x += -5;
                     break;
 
@@ -815,7 +847,19 @@ class Tableau1 extends Phaser.Scene{
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
                     me.speed=0;
                     break;
+
+                case Phaser.Input.Keyboard.KeyCodes.D:
+                case Phaser.Input.Keyboard.KeyCodes.Q:
+                    me.filterwalki.setVisible(true)
+                    me.filterBoyWalk.setVisible(false)
             }
+
+
+
+
+
+
+
         });
 
     }
