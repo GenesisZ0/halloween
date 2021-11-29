@@ -91,6 +91,11 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('monster' + i, 'assets/Characters/enemy2/PNG/idle/Layer-' + i + '.png');
         }
 
+        for(let i=1;i<=5;i++) {
+            this.load.image('sol' + i, 'assets/Characters/enemy 1/PNG/sol/Layer-' + i + '.png');
+        }
+
+
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
         for(let i=1;i<=3;i++) {
@@ -646,6 +651,21 @@ class Tableau1 extends Phaser.Scene{
         this.filterMonster.play('monster');
         this.filterMonster.scale = 0.4
         this.filterMonster.setVisible(true)
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterSol = this.add.sprite(1650, 330 , 'sol').setOrigin(0, 0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'monstresol',
+            frames: this.getFrames('sol',5),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.filterSol.play('monstresol');
+        this.filterSol.scale = 0.4
+        this.filterSol.setVisible(true)
 
         /**
          * filtre type film au premier plan
