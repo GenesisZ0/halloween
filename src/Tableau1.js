@@ -59,61 +59,33 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('g-grass-'+i, 'assets/level/ground/g-grass-'+i+'.png');
         }
 
-        //filtre film TODO élève : faire une boucle à la place des 3 lignes qui suivent
+
         for(let i=1;i<=3;i++) {
             this.load.image('filterBloody' + i, 'assets/level/filters/bloody/frame' + i + '.png');
 
         }
+        this.loadFrames("filterBloody",3,"assets/level/filters/bloody/frame")
+        this.loadFrames("push", 10,"assets/Characters/boy/boy_style_4/PNG/push/Layer-")
+        this.loadFrames("idle2", 10,"assets/Characters/boy/boy_style_5/PNG/idle2/Layer-")
 
-        // perso
+        this.loadFrames("walk", 10,"assets/Characters/boy/boy_style_2/PNG/walk/Layer-")
+        this.loadFrames("walk", 10,"assets/Characters/boy/boy_style_2/PNG/walk/Layer-")
+        this.loadFrames("walki", 10,"assets/Characters/boy/boy_style_2/PNG/idle/Layer-")
 
-        for(let i=1;i<=10;i++) {
-            this.load.image('push' + i, 'assets/Characters/boy/boy_style_4/PNG/push/Layer-' + i + '.png');
-        }
+        this.loadFrames("monster", 6,"assets/Characters/enemy2/PNG/idle/Layer-")
+        this.loadFrames("monster2", 8,"assets/Characters/enemy2/PNG/run/Layer-")
+        this.loadFrames("sol", 5,"assets/Characters/enemy 1/PNG/sol/Layer-")
 
-        for(let i=1;i<=10;i++) {
-            this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
-        }
-        for(let i=1;i<=10;i++) {
-            this.load.image('idle2' + i, 'assets/Characters/boy/boy_style_5/PNG/idle2/Layer-' + i + '.png');
-        }
-
-        for(let i=1;i<=10;i++) {
-            this.load.image('walk' + i, 'assets/Characters/boy/boy_style_2/PNG/walk/Layer-' + i + '.png');
-        }
-
-        for(let i=1;i<=10;i++) {
-            this.load.image('walki' + i, 'assets/Characters/boy/boy_style_2/PNG/idle/Layer-' + i + '.png');
-        }
-        // enemie
-
-        for(let i=1;i<=6;i++) {
-            this.load.image('monster' + i, 'assets/Characters/enemy2/PNG/idle/Layer-' + i + '.png');
-        }
-
-        for(let i=1;i<=5;i++) {
-            this.load.image('sol' + i, 'assets/Characters/enemy 1/PNG/sol/Layer-' + i + '.png');
-        }
-
-
-
-        //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
-        for(let i=1;i<=3;i++) {
-            this.load.image('bg-animation-' + i, 'assets/level/background-2/bg-animation/bg-animation-' + i + '.png');
-        }
-        //filtre neige
-        for(let i=1;i<=5;i++) {
-            this.load.image('filterNeige' + i, 'assets/level/weather/snow/frame' + i + '.png');
-
-        }
-        //filtre pLUIE
-        for(let i=1;i<=3;i++) {
-            this.load.image('filterPluie' + i, 'assets/level/weather/rain/frame' + i + '.png');
-
-        }
+        this.loadFrames("bg-animation-", 3,'assets/level/background-2/bg-animation/bg-animation-')
+        this.loadFrames("filterNeige", 5,"assets/level/weather/snow/frame")
+        this.loadFrames("filterPluie",3,"assets/level/weather/rain/frame")
 
     }
-
+    loadFrames(prefix,length,baseUrl){
+        for (let i=1;i<=length;i++){
+            this.load.image(prefix+i,baseUrl+i+'.png')
+        }
+    }
 
     /**
      * Crée la scène
@@ -640,7 +612,7 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.filterMonster = this.add.sprite(1430, 205  , 'monster').setOrigin(0, 0);
+        this.filterMonster = this.add.sprite(1440, 250  , 'monster').setOrigin(0, 0);
         //animation de 3 images
         this.anims.create({
             key: 'monster',
@@ -649,8 +621,25 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
         this.filterMonster.play('monster');
-        this.filterMonster.scale = 0.4
+        this.filterMonster.scale = 0.2
         this.filterMonster.setVisible(true)
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterMonster2 = this.add.sprite(1440, 0   , 'monster2').setOrigin(0, 0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'monster2',
+            frames: this.getFrames('monster2',6),
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterMonster2.play('monster2');
+        this.filterMonster2.scale = 0.4
+        this.filterMonster2.setVisible(true)
+        this.filterMonster2.flipX = true
+
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
@@ -671,6 +660,20 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
+        this.tweens.add({
+            targets: this.filterMonster2,
+                x: 700,
+                duration: 3000,
+                ease: Phaser.Math.Easing.Sine.InOut,
+                yoyo: true,
+                delay: 1000,
+                repeat: -1,
+                flipX:true
+        });
+
+
+
+
         this.filterwalki = this.add.sprite(510, 215  , 'walki').setOrigin(0, 0);
         //animation de 3 images
         this.anims.create({
