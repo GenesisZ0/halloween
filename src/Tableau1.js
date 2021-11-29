@@ -226,19 +226,7 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(box2);
         box2.scale = 0.6
         box2.angle = 5
-        /**
-         * contient tous les éléments du premier plan (noir)
-         * @type {Phaser.GameObjects.Container}
-         */
-        let gz15 = this.add.image(340, 370, 'gZ15').setOrigin(0, 1);
-        this.groundContainer.add(gz15);
-        /**
-         * contient tous les éléments du premier plan (noir)
-         * @type {Phaser.GameObjects.Container}
-         */
-        let gz1 = this.add.image(1150, 370, 'gZ1').setOrigin(0, 1);
-        this.groundContainer.add(gz1);
-        gz1.scale = 0.8
+
         /**
          * contient tous les éléments du premier plan (noir)
          * @type {Phaser.GameObjects.Container}
